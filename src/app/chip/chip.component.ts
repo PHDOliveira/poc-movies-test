@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-
-
-
 @Component({
   selector: 'app-chip',
   templateUrl: './chip.component.html',
@@ -10,11 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChipComponent implements OnInit {
   @Input() chip: any;
-  constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.chip);
-    console.log('aaaa');
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
 }
