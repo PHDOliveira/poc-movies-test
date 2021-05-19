@@ -1,0 +1,5 @@
+<div class="searchbar">
+    <label for="searchbar">{{searchbar.label}}: </label>
+    <input id="searchbar"  placeholder="{{searchbar.placeholder}}"  (keyup.enter)="addItem($event)">
+    <button id="button" (click)="searchMovies()"> Search Movies</button>
+</div>
