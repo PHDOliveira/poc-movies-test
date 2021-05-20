@@ -1,5 +1,5 @@
 
-<span class="chip"> 
+<span class="chip" id="{{chip.id}}"> 
   <span>{{chip.name}}</span>
-  <span class="close">X</span>
+  <span class="close" (click)="removeItem($event)">X</span>
 </span>

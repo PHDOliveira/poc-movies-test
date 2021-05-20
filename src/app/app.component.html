@@ -3,10 +3,10 @@
   <div class="search">
     <app-searchbar (submit)="addItem($event)"></app-searchbar>
     <div class="container-chips">
-      <app-chip *ngFor="let chip of chips" [chip]="chip"></app-chip>
+      <app-chip *ngFor="let chip of chips" [chip]="chip" (click)="removeItem($event)"></app-chip>
     </div>
   </div>
-  <div class="movies">
+    <div class="movies">
     <app-movie ></app-movie>
   </div>
 </div>

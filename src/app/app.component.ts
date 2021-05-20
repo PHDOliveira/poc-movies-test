@@ -13,4 +13,7 @@ export class AppComponent {
   addItem(name: string): void {
     this.chips.push({ name: name });
   }
+  removeItem(id: number): void {
+    this.chips = this.chips.filter((el: any) => +el.id !== +id);
+    this.moviesService.list$ = this.chips.map((el: any) => el.name);
 }

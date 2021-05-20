@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-chip',
@@ -7,9 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChipComponent implements OnInit {
   @Input() chip: any;
+  @Output() click: EventEmitter<number> = new EventEmitter();
 
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor() { }
 
+  ngOnInit(): void { }
+  removeItem(event: any): void {
+    this.click.emit(event.target.parentElement.id);
+  }
 }
