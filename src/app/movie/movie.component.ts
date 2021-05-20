@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {MoviesService} from '../movies.service'
-import { Movie,Response } from './movie';
+import { Movie } from './movie';
 import { take, takeUntil } from 'rxjs/operators';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-movie',
@@ -11,18 +11,25 @@ import { Subject, Subscription } from 'rxjs';
 })
 export class MovieComponent implements OnInit, OnDestroy {
   param: string = "";
-  
-  destroyed$: Subject<void> = new Subject();
 
-  constructor(private moviesService: MoviesService) {
-    
-  }
-  
+  destroyed$: Subject<void> = new Subject();
+  hasMovies: boolean = false;
   movies: Movie[] = [];
-  
+
+  constructor(private moviesService: MoviesService) {}
+
   ngOnInit(): void {
-   this.param = this.moviesService.param$.value;
-   this.moviesService.getMovies(this.param).pipe(takeUntil(this.destroyed$)).subscribe(response => this.movies = response.results);
+   this.moviesService.param$.pipe(takeUntil(this.destroyed$)).subscribe(param => {
+    this.moviesService.getMovies(param).pipe(take(1)).subscribe(response => {
+      this.movies = response.results;
+
+      if (this.movies.length > 0) {
+        this.hasMovies = true;
+      } else {
+        this.hasMovies = false;
+      }
+    });
+   })
   }
   
   ngOnDestroy (): void {

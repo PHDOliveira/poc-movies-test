@@ -9,9 +9,8 @@ export class AppComponent {
   title = 'POC - Movies';
   chips: any = [];
   name = "";
+
   addItem(name: string): void {
-    console.log("asad");
-    console.log(name);
     this.chips.push({ name: name });
   }
 }

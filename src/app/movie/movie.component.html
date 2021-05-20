@@ -1,13 +1,12 @@
-<table *ngIf="movies">
-    <tr>
-        <th>Movie Title</th>
-        <th>Description</th>
-        <th>Release Date</th>
-    </tr>
-<tr  *ngFor="let movie of movies">
+<table *ngIf="hasMovies">
+  <tr>
+    <th>Movie Title</th>
+    <th>Description</th>
+    <th>Release Date</th>
+  </tr>
+  <tr  *ngFor="let movie of movies">
     <td>{{movie.original_title}}</td>
     <td>{{movie.overview}}</td>
     <td>{{movie.release_date | date: 'dd/MM/yyyy'}}</td>
-    
-</tr>
+  </tr>
 </table>
