@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {MoviesService} from '../movies.service';
+import { MoviesService } from '../movies.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-searchbar',
@@ -12,22 +13,23 @@ export class SearchbarComponent implements OnInit {
   searches: string[] = [];
 
   searchbar = {
-    label : "Your Search",
-    placeholder : "Search for movies"
+    label: "Your Search",
+    placeholder: "Search for movies"
   };
 
-  constructor(private moviesService:MoviesService) {}
+  constructor(private moviesService: MoviesService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   searchMovies(): void {
-    this.moviesService.param$.next(this.searches.toString());
+    const arrayParams = this.moviesService.list$;
+    this.moviesService.param$.next(arrayParams);
   }
 
   addItem(event: any): void {
     const searchInput = event.target.value;
 
-    this.searches.push(searchInput);
     this.submit.emit(searchInput);
+    event.target.value = "";
   }
 }
