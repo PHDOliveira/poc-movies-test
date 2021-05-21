@@ -1,12 +1,13 @@
 <div class="container">
   <h1>{{title}}</h1>
   <div class="search">
-    <app-searchbar (submit)="addItem($event)"></app-searchbar>
     <div class="container-chips">
       <app-chip *ngFor="let chip of chips" [chip]="chip" (click)="removeItem($event)"></app-chip>
     </div>
+    <app-searchbar (submit)="addItem($event)"></app-searchbar>
+
   </div>
-    <div class="movies">
-    <app-movie ></app-movie>
+  <div class="movies">
+    <app-movie></app-movie>
   </div>
 </div>
